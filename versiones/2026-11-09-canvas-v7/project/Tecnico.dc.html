@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Educai Funcionamiento técnico</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{text-decoration:none}
+.nav-link{color:#241F4A}
+.nav-link:hover{color:#5B3FD0}
+.btn-primary:hover{filter:brightness(1.12)}
+.btn-ghost:hover{background:#ECE8FB}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; background: #FAF9FF; color: #241F4A; font-family: 'Inter', system-ui, sans-serif; font-size: 17px; line-height: 1.6; display: flex; flex-direction: column">
+
+<header style="width: 100%; box-sizing: border-box; padding: 24px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; max-width: 1280px; margin: 0 auto">
+<a href="Main.dc.html" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #241F4A">Educai</a>
+<nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 500">
+<a class="nav-link" href="Main.dc.html">Inicio</a>
+<a class="nav-link" href="Resultados.dc.html">Resultados</a>
+<a class="nav-link" href="Tecnico.dc.html" style="color: {{accent}}; font-weight: 600">Funcionamiento técnico</a>
+<a class="nav-link" href="Quien-soy.dc.html">Quién soy</a>
+<a class="btn-primary" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener" style="background: {{accent}}; color: #FFFFFF; padding: 12px 20px; border-radius: 10px">Sumarme al piloto 2027</a>
+</nav>
+</header>
+
+<section style="width: 100%; box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 56px 32px 80px; display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Funcionamiento técnico</p>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.06; letter-spacing: -0.03em; max-width: 820px">Cómo funciona Educai por dentro</h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #433D6B; max-width: 780px">Educai ya funciona como un MVP desplegado en producción, con flujo de estudiante, flujo de docente y lógica analítica. Convierte conversaciones individuales en patrones colectivos sin construir perfiles de cada alumno.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px; font-weight: 600">
+<span style="background: #ECE8FB; padding: 6px 14px; border-radius: 999px">Next.js</span>
+<span style="background: #ECE8FB; padding: 6px 14px; border-radius: 999px">React</span>
+<span style="background: #ECE8FB; padding: 6px 14px; border-radius: 999px">TypeScript</span>
+<span style="background: #ECE8FB; padding: 6px 14px; border-radius: 999px">PostgreSQL</span>
+<span style="background: #ECE8FB; padding: 6px 14px; border-radius: 999px">Prisma</span>
+<span style="background: #ECE8FB; padding: 6px 14px; border-radius: 999px">Render</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; padding-top: 8px">
+<a class="btn-primary" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener" style="background: {{accent}}; color: #FFFFFF; padding: 16px 28px; border-radius: 12px; font-weight: 600; font-size: 17px">Sumate al piloto 2027</a>
+</div>
+</section>
+
+<section style="width: 100%; background: #FFFFFF">
+<div style="box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">El ciclo completo</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">Del contenido del docente a una nueva decisión docente</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">1</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Contenido docente</h3><p style="margin: 0; font-size: 15px; color: #433D6B">El docente carga y activa los materiales de su materia.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">2</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Estudio con IA</h3><p style="margin: 0; font-size: 15px; color: #433D6B">El estudiante conversa con un tutor que usa esos materiales.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">3</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Conversaciones</h3><p style="margin: 0; font-size: 15px; color: #433D6B">Cada interacción queda como una conversación de varios turnos.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">4</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Análisis</h3><p style="margin: 0; font-size: 15px; color: #433D6B">La IA detecta conceptos y señales dentro de las conversaciones.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">5</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Patrones de aprendizaje</h3><p style="margin: 0; font-size: 15px; color: #433D6B">Las señales se agrupan por concepto entre participantes independientes.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">6</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Decisión docente</h3><p style="margin: 0; font-size: 15px; color: #433D6B">El docente ve insights y recomendaciones, y decide qué hacer.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">7</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Intervención en clase</h3><p style="margin: 0; font-size: 15px; color: #433D6B">Registra su acción y realiza la sesión de clase.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">8</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Feedback</h3><p style="margin: 0; font-size: 15px; color: #433D6B">Los estudiantes responden con una valoración y un comentario.</p></div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #F3F0FF; border-radius: 16px; padding: 24px; display: flex; gap: 18px; align-items: flex-start">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; color: {{accent}}; line-height: 1">9</span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700">Nueva evidencia</h3><p style="margin: 0; font-size: 15px; color: #433D6B">Las conversaciones siguientes permiten comparar señales antes y después.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="width: 100%; box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Tutor con contenido validado</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.15; letter-spacing: -0.02em">El docente controla de dónde responde la IA</h2>
+<p style="margin: 0; font-size: 17px; color: #433D6B">El docente carga materiales en texto, Markdown o PDF, y cada uno tiene un estado: borrador (DRAFT), activo (ACTIVE) o retirado (RETIRED). Solo los materiales activos se usan para recuperar contexto durante las conversaciones.</p>
+<p style="margin: 0; font-size: 17px; color: #433D6B">Educai conserva la trazabilidad de qué fragmentos se usaron en cada respuesta. Hoy la búsqueda es principalmente léxica, y todavía no usa embeddings ni una base vectorial.</p>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 12px; padding: 16px 20px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: {{accent}}">1</span><span style="font-size: 16px">El docente carga el material.</span></div>
+<div style="display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 12px; padding: 16px 20px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: {{accent}}">2</span><span style="font-size: 16px">Educai extrae el texto y lo divide en fragmentos.</span></div>
+<div style="display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 12px; padding: 16px 20px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: {{accent}}">3</span><span style="font-size: 16px">Guarda esos fragmentos.</span></div>
+<div style="display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 12px; padding: 16px 20px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: {{accent}}">4</span><span style="font-size: 16px">Cuando el estudiante pregunta, busca los fragmentos relacionados.</span></div>
+<div style="display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 12px; padding: 16px 20px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: {{accent}}">5</span><span style="font-size: 16px">Los envía a la IA junto con la pregunta.</span></div>
+<div style="display: flex; gap: 16px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 12px; padding: 16px 20px"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: {{accent}}">6</span><span style="font-size: 16px">Genera una respuesta contextualizada y registra qué fragmentos usó.</span></div>
+</div>
+</section>
+
+<section style="width: 100%; background: #241F4A; color: #FFFFFF">
+<div style="box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #BDB0FF">Del chat al patrón colectivo</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">Educai busca señales y agrega evidencia por participante</h2>
+<p style="margin: 0; font-size: 17px; color: #E7E3FA">Además de guardar la conversación que necesita el estudiante, Educai la analiza y detecta preguntas, confusiones, reformulaciones, conceptos involucrados, tipos de explicación y señales de comprensión. La IA devuelve el análisis bajo un esquema estructurado que se valida antes de guardarlo, y esas señales son observaciones sobre la conversación, sin convertirse en una nota.</p>
+<p style="margin: 0; font-size: 17px; color: #E7E3FA">Para que una conversación intensa de una sola persona no distorsione el resultado, la agregación cuenta participantes independientes y deja de lado la cantidad de mensajes.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 280px; min-width: 0; background: #2F2A5E; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; color: #BDB0FF">NO_DATA</span>
+<p style="margin: 0; font-size: 16px; color: #E7E3FA">No hay señales suficientes para ese concepto.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #2F2A5E; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; color: #BDB0FF">INSUFFICIENT</span>
+<p style="margin: 0; font-size: 16px; color: #E7E3FA">Hay señales, pero en pocas personas. Educai lo reconoce y evita convertirlo en una conclusión grupal.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #2F2A5E; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; color: #BDB0FF">SUFFICIENT</span>
+<p style="margin: 0; font-size: 16px; color: #E7E3FA">El patrón aparece en al menos 3 participantes independientes (umbral configurable) y se muestra al docente como evidencia agregada.</p>
+</div>
+</div>
+<div style="border: 1px solid #4A4486; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; max-width: 820px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #BDB0FF">Ejemplo del tipo de mensaje que ve el docente</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; line-height: 1.35; font-weight: 500">«Varios participantes muestran señales relacionadas con dificultades para distinguir correlación y causalidad.»</span>
+<span style="font-size: 15px; color: #D9D4F5">Educai evita los diagnósticos individuales y habla del grupo.</span>
+</div>
+</div>
+</section>
+
+<section style="width: 100%; box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Insights y seguimiento</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">De la evidencia a la acción en clase</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Insight</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">Cuando hay evidencia suficiente, incluye el concepto, los participantes afectados sobre el total, la proporción, el estado de evidencia, un resumen y fragmentos anonimizados y sanitizados.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Recomendación</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">Concreta, ligada a la evidencia y ejecutable en una clase. Por ejemplo: usar dos casos comparativos donde exista una correlación sin relación causal.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Intervención</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">El docente registra qué hizo, como explicar de nuevo, usar otro ejemplo, hacer una actividad práctica o abrir una discusión, y queda conectada con el insight.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border: 1px solid #DCD6F2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Sesiones y feedback</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">El docente abre y cierra sesiones de clase, y después los estudiantes dejan una valoración y un comentario que llegan en resultados agregados.</p>
+</div>
+</div>
+<p style="margin: 0; font-size: 17px; color: #433D6B; max-width: 820px">Educai muestra una comparación de señales antes y después de una intervención. Una mejora posterior no demuestra por sí sola que la intervención la haya causado.</p>
+</section>
+
+<section style="width: 100%; background: #F3F0FF">
+<div style="box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Privacidad desde la arquitectura</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">Identidad, análisis y agregación van por separado</h2>
+<p style="margin: 0; font-size: 17px; color: #433D6B">La conversación pertenece a la experiencia privada del estudiante. Las señales se transforman antes de llegar al docente, que trabaja sobre el insight del grupo y no sobre un expediente individual.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 15px; font-weight: 600">
+<span style="background: #FFFFFF; border: 1px solid #DCD6F2; padding: 10px 16px; border-radius: 999px">Alumno identificado</span><span>→</span>
+<span style="background: #FFFFFF; border: 1px solid #DCD6F2; padding: 10px 16px; border-radius: 999px">Conversación</span><span>→</span>
+<span style="background: #FFFFFF; border: 1px solid #DCD6F2; padding: 10px 16px; border-radius: 999px">Análisis</span><span>→</span>
+<span style="background: #FFFFFF; border: 1px solid #DCD6F2; padding: 10px 16px; border-radius: 999px">Pseudonimización</span><span>→</span>
+<span style="background: #FFFFFF; border: 1px solid #DCD6F2; padding: 10px 16px; border-radius: 999px">Agregación</span><span>→</span>
+<span style="background: #FFFFFF; border: 1px solid #DCD6F2; padding: 10px 16px; border-radius: 999px">Insight grupal</span><span>→</span>
+<span style="background: {{accent}}; color: #FFFFFF; padding: 10px 16px; border-radius: 999px">Docente</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Patrones colectivos</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">El docente no dispone de perfiles analíticos individuales, rankings, métricas cognitivas por alumno ni diagnósticos automáticos.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Eliminación real</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">Cuando el estudiante elimina una conversación, también se eliminan los análisis y señales derivados, y se recalculan los agregados.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Evidencia anonimizada</h3>
+<p style="margin: 0; font-size: 16px; color: #433D6B">Los fragmentos que ve el docente están anonimizados y sanitizados, y solo aparecen cuando hay evidencia grupal suficiente.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="width: 100%; background: #2F2A5E; color: #FFFFFF">
+<div style="box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #BDB0FF">Hacia dónde va · especificado, todavía no construido</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">De la evidencia a la próxima decisión</h2>
+<p style="margin: 0; font-size: 17px; color: #DCD6F2">Además del MVP, tenemos escritas las especificaciones (versión 1.0) de la capa que sigue. Las incluimos acá porque muestran cómo pensamos el producto, pero no las contamos como funcionalidades existentes.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 300px; min-width: 0; background: #3A3470; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Motor de interpretación</h3>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Convierte varias señales sobre una capacidad en un estado visible con cuatro etiquetas: «Todavía no sabemos», «En desarrollo», «Evidencia sólida» y «Conviene revisar». No son porcentajes de comprensión, son etiquetas operativas que salen de evidencia observable.</p>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Para llegar a «Evidencia sólida» pide al menos dos oportunidades independientes, una de ellas de calidad alta y con poca ayuda. Una sola respuesta, correcta o incorrecta, no cambia el estado. Los umbrales están pensados como hipótesis a calibrar en un piloto.</p>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; background: #3A3470; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Motor de recomendación</h3>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Toma esa interpretación, el cronograma y las restricciones del aula, y propone una sola acción principal con su motivo. Para el docente trabaja siempre con agregados: la unidad es la capacidad o el patrón del grupo, nunca un alumno señalado.</p>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Las reglas de prioridad viven en código versionado y la IA ayuda a redactar y a proponer variantes, pero no decide umbrales ni quién entra en un cálculo.</p>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; background: #3A3470; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Panel docente por cátedra</h3>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Cada cátedra queda aislada de las demás. La pantalla de inicio responde en unos segundos dónde está la cursada, qué necesita el aula y qué conviene hacer en la próxima clase, con un mapa de aprendizaje vinculado al programa y un botón para cerrar la clase.</p>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Los porcentajes se calculan solo sobre estudiantes con evidencia suficiente: si 12 de 27 necesitan revisar un tema, se muestra 44% «basado en 27», no 12 sobre los 42 inscriptos. Con menos de 5 estudiantes no se muestra el agregado.</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 420px; min-width: 0; border: 1px solid #5B54A0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Diseño de experiencias de clase</h3>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">La pregunta de partida es qué comportamiento queremos provocar para que el estudiante necesite aprender el contenido. De ahí salen el desafío, la dinámica, el feedback y la evidencia que deja. La creatividad de la dinámica es un medio, y lo que importa es el aprendizaje que se pueda mostrar. Si la tecnología no mejora lo que se logra con papel o pizarra, el sistema recomienda una experiencia presencial.</p>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; border: 1px solid #5B54A0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700">Onboarding de autodescubrimiento</h3>
+<p style="margin: 0; font-size: 16px; color: #DCD6F2">Una conversación estructurada de unos 10 a 12 minutos, en cinco etapas, que arma una primera hipótesis profesional del estudiante y le propone experimentos para ponerla a prueba. El resultado se presenta como hipótesis y no como identidad. Es una propuesta de rediseño y está separada del perfil académico.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="width: 100%; box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Estado actual del MVP</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">Lo que ya funciona y lo que todavía falta</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">Ya funciona</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px; font-weight: 500">
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Autenticación y roles</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Materias y códigos de ingreso</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Carga de PDF, Markdown y texto</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Versionado y estados de materiales</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Actividades</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Tutor multi-turno con RAG</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Trazabilidad de fuentes</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Análisis estructurado con IA</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Pseudonimización y agregación</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Insights y recomendaciones</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Intervenciones y sesiones</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Feedback y comparación antes y después</span>
+<span style="background: #ECE8FB; padding: 8px 14px; border-radius: 999px">Eliminación de conversaciones</span>
+</div>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">Todavía falta</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px; font-weight: 500">
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Recuperación semántica con embeddings</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Análisis asincrónico para escalar</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Almacenamiento de archivos fuera de PostgreSQL</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">SSO, SAML y directorios universitarios</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Políticas de retención configurables</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Auditoría completa y exportable</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Más tests de punta a punta</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Motores de interpretación y recomendación v1.0</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Mapa de aprendizaje y cierre de clase</span>
+<span style="border: 1px solid #B9AEEA; padding: 8px 14px; border-radius: 999px">Onboarding de autodescubrimiento</span>
+</div>
+</div>
+</div>
+<p style="margin: 0; font-size: 15px; color: #5D5782; max-width: 820px">Los insights agregados y el mapa de temas todavía no se evaluaron en el test con estudiantes.</p>
+</section>
+
+<section style="width: 100%; box-sizing: border-box; max-width: 1280px; margin: 0 auto 96px; padding: 0 32px">
+<div style="background: {{accent}}; color: #FFFFFF; border-radius: 28px; padding: 64px 56px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em">Probá Educai en tu cátedra</h2>
+<p style="margin: 0; font-size: 18px; max-width: 620px">Buscamos docentes e instituciones para la cohorte 2027.</p>
+</div>
+<div style="flex: 0 1 300px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+<a href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener" style="background: #FFFFFF; color: #241F4A; padding: 16px 28px; border-radius: 12px; font-weight: 600; font-size: 17px">Sumate al piloto 2027</a>
+</div>
+</div>
+</section>
+
+<footer style="width: 100%; box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 0 32px 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; color: #5D5782">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #241F4A">Educai</span>
+<span>Fundado por Tomás Fossatti · Córdoba, Argentina</span>
+<span style="display: flex; flex-wrap: wrap; gap: 16px"><a href="https://www.instagram.com/tomasfossatti_/" target="_blank" rel="noopener">Instagram</a><a href="mailto:tomas.fossatti01@gmail.com">tomas.fossatti01@gmail.com</a></span>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5B3FD0","options":["#5B3FD0","#0F7C8A","#C2410C","#241F4A"]},"$preview":{"width":1440,"height":6700}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#5B3FD0' };
+}
+}
+</script>
+</body>
+</html>
