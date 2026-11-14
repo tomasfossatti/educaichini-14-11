@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Educai es una plataforma con IA que convierte las conversaciones de estudio en información útil para que el docente decida mejor sus clases.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Educai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: bandas a todo el ancho que alternan claro, blanco y oscuro; contenido centrado hasta 1280px; cuatro vistas por hash */
+:root{
+  --bg:#FAF9FF; --surface:#FFFFFF; --ink:#241F4A; --muted:#5E5885;
+  --accent:#5B3FD0; --accent-ink:#FFFFFF; --tint:#F3F0FF; --line:#DCD6F2;
+  --dark:#2F2A5E; --dark-deep:#241F4A; --on-dark:#F3F0FF; --on-dark-muted:#BDB0FF; --lilac:#BDB0FF;
+  --warn-bg:#FFF6E5; --warn-line:#F0D49A; --warn-ink:#6B4A00;
+  --display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --radius:18px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14112B; --surface:#1C1838; --ink:#ECE8FF; --muted:#A9A2D1;
+  --accent:#9A85FF; --accent-ink:#14112B; --tint:#221D45; --line:#352F63;
+  --dark:#221D47; --dark-deep:#0E0C22; --on-dark:#F3F0FF; --on-dark-muted:#BDB0FF; --lilac:#BDB0FF;
+  --warn-bg:#2E2510; --warn-line:#5C4818; --warn-ink:#F2D598; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14112B; --surface:#1C1838; --ink:#ECE8FF; --muted:#A9A2D1;
+  --accent:#9A85FF; --accent-ink:#14112B; --tint:#221D45; --line:#352F63;
+  --dark:#221D47; --dark-deep:#0E0C22; --on-dark:#F3F0FF; --on-dark-muted:#BDB0FF; --lilac:#BDB0FF;
+  --warn-bg:#2E2510; --warn-line:#5C4818; --warn-ink:#F2D598; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(2.2rem,5.2vw,4rem);font-weight:700}
+h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:700}
+h3{font-size:1.25rem;font-weight:600}
+h4{font-size:1.05rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(56px,8vw,104px)}
+.band.white{background:var(--surface)}
+.band.dark{background:var(--dark);color:var(--on-dark)}
+.band.dark .eyebrow{color:var(--lilac)}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+.narrow{max-width:760px}
+.eyebrow{font-family:var(--display);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}
+.lead{font-size:1.15rem;color:var(--muted);max-width:62ch}
+.dark .lead{color:var(--on-dark-muted)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.g2>*,.g3>*,.g4>*{min-width:0}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px}
+.nav{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:700;font-size:1.35rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+.logo i{width:12px;height:12px;border-radius:3px;background:var(--accent);transform:rotate(45deg);display:inline-block}
+.links{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.links a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;padding:6px 10px;border-radius:8px}
+.links a:hover{color:var(--ink);background:var(--tint)}
+.links a[aria-current="page"]{color:var(--ink);background:var(--tint)}
+.menu-btn{display:none}
+@media (max-width:860px){
+  .links{order:3;flex-basis:100%;display:none;flex-direction:column}
+  .links.open{display:flex}
+  .menu-btn{display:inline-flex;margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .9rem var(--body);cursor:pointer}
+  .nav .btn.small{display:none}
+}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:1rem;text-decoration:none;padding:13px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:2px solid var(--accent);transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.small{padding:8px 16px;font-size:.9rem}
+.dark .btn{background:var(--lilac);border-color:var(--lilac);color:var(--dark-deep)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.more{font-weight:600;text-decoration:none;font-family:var(--display)}
+.more:hover{text-decoration:underline}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px}
+.card.tint{background:var(--tint);border-color:transparent}
+.card .muted,.muted{color:var(--muted)}
+.dark .card{background:color-mix(in srgb,var(--dark-deep) 55%,var(--dark));border-color:color-mix(in srgb,var(--lilac) 22%,transparent);color:var(--on-dark)}
+.dark .muted,.dark .card .muted{color:var(--on-dark-muted)}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--tint);padding:4px 10px;border-radius:999px;align-self:flex-start}
+.dark .tag{background:color-mix(in srgb,var(--lilac) 18%,transparent);color:var(--lilac)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.85rem;font-weight:500;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
+.hero>*{min-width:0}
+@media (max-width:920px){.hero{grid-template-columns:1fr}}
+.hero h1 em{font-style:normal;color:var(--accent)}
+
+/* demo card */
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 60px -30px color-mix(in srgb,var(--accent) 40%,transparent)}
+.demo-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.bubble{padding:12px 16px;border-radius:16px;font-size:.95rem;max-width:88%}
+.bubble.me{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px}
+.bubble.ai{align-self:flex-start;background:var(--tint);border-bottom-left-radius:4px}
+.teacher{background:var(--tint);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.topic{display:flex;align-items:center;gap:10px;font-size:.92rem;font-weight:500}
+.topic b{flex:1;font-weight:500}
+.topic span{height:8px;border-radius:4px;background:var(--accent);opacity:.85}
+.demo small{font-size:.78rem;color:var(--muted)}
+
+/* tension */
+.voices{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.voices>*{min-width:0}
+@media (max-width:820px){.voices{grid-template-columns:1fr}}
+.voices ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+.voices li{padding-left:22px;position:relative}
+.voices li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--lilac)}
+blockquote.big{margin:0;font-family:var(--display);font-size:clamp(1.3rem,2.5vw,1.85rem);line-height:1.3;font-weight:500;max-width:40ch;border-left:3px solid var(--lilac);padding-left:24px}
+
+/* story */
+.story{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.story>*{min-width:0}
+@media (max-width:860px){.story{grid-template-columns:1fr;gap:28px}}
+.prose{display:flex;flex-direction:column;gap:18px;font-size:1.08rem;max-width:62ch}
+.prose p:last-child{font-family:var(--display);font-weight:600;font-size:1.2rem}
+
+/* principles numbered markers only where sequences */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:s}
+.steps>*{min-width:0}
+@media (max-width:980px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;counter-increment:s}
+.step::before{content:counter(s);font-family:var(--display);font-weight:700;font-size:.85rem;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--accent);margin-bottom:6px}
+.step h4{font-size:1rem}
+.step p{font-size:.92rem;color:var(--muted)}
+.note{background:var(--tint);border-radius:14px;padding:16px 20px;font-size:.95rem}
+.note.warn{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink)}
+.dark .note{background:color-mix(in srgb,var(--lilac) 12%,transparent);color:var(--on-dark)}
+
+/* model */
+.slogan{font-family:var(--display);font-size:clamp(2rem,4.6vw,3.4rem);font-weight:700;line-height:1.08;max-width:18ch}
+.slogan span{color:var(--lilac)}
+.who-gets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.who-gets>*{min-width:0}
+@media (max-width:820px){.who-gets{grid-template-columns:1fr}}
+
+/* stats */
+.stat{display:flex;flex-direction:column;gap:8px}
+.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.45em;color:var(--muted);font-weight:600;margin-left:4px}
+.caveat{font-size:.92rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+
+/* bars */
+.bars{display:flex;flex-direction:column;gap:18px}
+.bar-row{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.bar-head{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;flex-wrap:wrap}
+.bar-head b{font-variant-numeric:tabular-nums;font-family:var(--display)}
+.track{height:28px;border-radius:8px;background:var(--tint);position:relative;overflow:hidden}
+.fill{height:100%;border-radius:8px;background:var(--accent)}
+.fill.soft{background:color-mix(in srgb,var(--accent) 45%,var(--tint))}
+.axis{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* tech */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.9rem;font-weight:500}
+.flow span.end{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.flow em{font-style:normal;color:var(--muted)}
+.cycle{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;counter-reset:c}
+.cycle li{counter-increment:c;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px 16px 56px;position:relative;font-size:.94rem;min-width:0}
+.cycle li::before{content:counter(c);position:absolute;left:16px;top:15px;width:28px;height:28px;border-radius:50%;background:var(--tint);color:var(--accent);font:700 .85rem var(--display);display:grid;place-items:center}
+.cycle li b{display:block;font-family:var(--display);font-size:1rem}
+.states{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.state{border-radius:14px;padding:18px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;gap:6px;min-width:0}
+.state code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;font-size:.85rem;padding:3px 8px;border-radius:6px;align-self:flex-start}
+.s0 code{background:var(--tint);color:var(--muted)}
+.s1 code{background:var(--warn-bg);color:var(--warn-ink)}
+.s2 code{background:var(--accent);color:var(--accent-ink)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--tint);padding:1px 6px;border-radius:5px}
+.spec{display:flex;flex-direction:column;gap:14px;counter-reset:sp}
+.spec .card{counter-increment:sp}
+.spec h3::before{content:counter(sp) ". ";color:var(--lilac)}
+.status{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.status>*{min-width:0}
+@media (max-width:760px){.status{grid-template-columns:1fr}}
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.check li{display:flex;gap:10px;align-items:baseline;font-size:.96rem}
+.check li::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--accent);transform:translateY(-1px)}
+.check.todo li::before{background:transparent;border:2px solid var(--muted)}
+
+/* quien soy */
+.photo{aspect-ratio:4/3;max-width:100%;border-radius:var(--radius);background:linear-gradient(135deg,var(--tint),color-mix(in srgb,var(--accent) 22%,var(--tint)));border:1px dashed var(--line);display:flex;align-items:flex-end;padding:16px;font-size:.85rem;color:var(--muted)}
+.photo.tall{aspect-ratio:4/5}
+.talk{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.talk>*{min-width:0}
+@media (max-width:860px){.talk{grid-template-columns:1fr}}
+.copy{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.copy code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.95rem;background:var(--surface);border:1px solid var(--line);padding:8px 12px;border-radius:10px;user-select:all;word-break:break-all}
+.copy button{font:600 .9rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:10px;cursor:pointer}
+
+/* footer */
+footer{background:var(--dark-deep);color:var(--on-dark-muted);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px;font-size:.92rem}
+footer .wrap{flex-direction:row;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer .logo{color:var(--on-dark)}
+footer a{color:var(--on-dark)}
+
+.view{display:block}
+@media (prefers-reduced-motion:no-preference){.view{animation:in .35s ease both}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav" aria-label="Principal">
+    <a class="logo" href="#inicio"><i></i>Educai</a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="links">Menú</button>
+    <div class="links" id="links">
+      <a href="#inicio" data-r="inicio">Inicio</a>
+      <a href="#resultados" data-r="resultados">Resultados</a>
+      <a href="#tecnico" data-r="tecnico">Funcionamiento técnico</a>
+      <a href="#quien-soy" data-r="quien-soy">Quién soy</a>
+    </div>
+    <a class="btn small" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener">Sumarme al piloto 2027</a>
+  </nav>
+</header>
+
+<main>
+<!-- ================= INICIO ================= -->
+<section class="view" id="v-inicio">
+  <div class="band">
+    <div class="wrap">
+      <div class="hero">
+        <div class="stack" style="gap:22px">
+          <span class="eyebrow">Educai · Tutor de IA para el aula</span>
+          <h1>Si la IA ya lo sabe todo, <em>¿para qué ir a clase?</em></h1>
+          <p class="lead">Educai es una plataforma con IA que convierte las conversaciones de estudio en información útil para que el docente decida mejor sus clases.</p>
+          <div class="row">
+            <a class="btn" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener">Sumate al piloto 2027</a>
+            <a class="btn ghost" href="#resultados">Ver resultados del test</a>
+          </div>
+        </div>
+        <div class="demo" aria-label="Vista de ejemplo">
+          <span class="demo-label">Lo que hace el estudiante</span>
+          <div class="bubble me">¿Cómo uso el punto de equilibrio en mi emprendimiento?</div>
+          <div class="bubble ai">Empecemos por tus costos fijos. ¿Cuáles tenés hoy?</div>
+          <div class="teacher">
+            <span class="demo-label">Lo que ve el docente</span>
+            <div class="topic"><b>Costos fijos y variables</b><span style="width:38%"></span></div>
+            <div class="topic"><b>Punto de equilibrio</b><span style="width:28%"></span></div>
+            <div class="topic"><b>Margen de contribución</b><span style="width:18%"></span></div>
+          </div>
+          <small>Vista de ejemplo con datos ilustrativos.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Esto nos pasa</span>
+        <h2>Dos personas en la misma aula que no terminan de conectar</h2>
+      </div>
+      <div class="voices">
+        <div class="card">
+          <span class="tag">Docentes</span>
+          <ul>
+            <li>Se quedan hasta las once de la noche preparando una clase para que sus estudiantes entiendan.</li>
+            <li>Llegan al aula con toda la energía, preguntan «¿se entendió?» y reciben ese silencio que todos conocemos.</li>
+            <li>Tienen que decidir si siguen con el programa o vuelven a explicar algo que no saben cuántos entendieron.</li>
+            <li>Y a fin de mes descubren que haber preparado una mejor clase no necesariamente cambió lo que cobran.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Nosotros, los estudiantes</span>
+          <ul>
+            <li>Mirábamos el reloj preguntándonos cuánto faltaba para que terminara la clase.</li>
+            <li>No entendíamos un tema y no levantábamos la mano porque nos daba vergüenza preguntar delante de todos.</li>
+            <li>Escuchábamos tres veces la misma explicación y necesitábamos que alguien nos la contara de otra manera.</li>
+            <li>Salíamos de dos horas de clase, abríamos YouTube o ChatGPT y en diez minutos entendíamos lo que no habíamos entendido en el aula.</li>
+          </ul>
+        </div>
+      </div>
+      <blockquote class="big">«Si puedo aprenderlo en mi casa, si tengo toda la información en internet y una inteligencia artificial que me responde a cualquier hora... ¿para qué voy a ir a clase?»</blockquote>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="story">
+        <div class="stack">
+          <span class="eyebrow">Por qué me importa</span>
+          <h2>Soy estudiante, hijo y nieto de docentes</h2>
+          <a class="more" href="#quien-soy">Conocer quién está detrás de Educai →</a>
+        </div>
+        <div class="prose">
+          <p>Crecí entre bibliotecas, libros, hojas y marcadores. Recuerdo a mi abuela con su guardapolvo blanco, corrigiendo con un lápiz rojo, y los domingos en mi casa, cuando mi mamá podía estar hasta las once de la noche preparando sus clases.</p>
+          <p>Yo le decía: «Vieja, ¿por qué te quedás trabajando hasta esta hora si a fin de mes vas a cobrar lo mismo?». Con los años entendí que lo hacía porque amaba enseñar y le importaban sus estudiantes.</p>
+          <p>Hay algo que nunca terminé de entender: ¿por qué un docente tendría que depender solo de esa pasión para hacer un trabajo extraordinario? Y al mismo tiempo, ¿cómo conseguimos que los estudiantes encontremos tanto valor en las clases que no queramos perdernos ninguna?</p>
+          <p>Esas preguntas me llevaron a construir Educai.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">El producto</span>
+        <h2>Un tutor para el estudiante y evidencia para el docente</h2>
+      </div>
+      <div class="grid g2">
+        <div class="card">
+          <span class="tag">Para el estudiante</span>
+          <h3>Preguntar sin vergüenza y entender mejor</h3>
+          <p class="muted">Estudia con un tutor de IA que responde con los materiales que cargó su docente. Puede pedir ejemplos, comparaciones o una explicación distinta, y seguir la conversación cuantos turnos necesite.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Para el docente</span>
+          <h3>Ver qué necesita su clase antes del parcial</h3>
+          <p class="muted">Recibe patrones del grupo sobre los temas que generan dudas, las preguntas que se repiten y qué podría hacer en la próxima clase. La decisión pedagógica sigue siendo suya.</p>
+        </div>
+      </div>
+      <div class="grid g4">
+        <div class="card tint"><h4>El docente decide</h4><p class="muted">La IA aporta evidencia y recomendaciones, y el criterio pedagógico es humano.</p></div>
+        <div class="card tint"><h4>Patrones, sin perfiles</h4><p class="muted">El docente ve el comportamiento del grupo, sin rankings ni diagnósticos de cada estudiante.</p></div>
+        <div class="card tint"><h4>Contenido validado</h4><p class="muted">Las respuestas se apoyan en los materiales activos que el docente eligió para la materia.</p></div>
+        <div class="card tint"><h4>El estudiante decide</h4><p class="muted">Sube sus conversaciones por decisión propia, y al usar la plataforma acepta los términos y condiciones. Puede eliminarlas cuando quiera, y el docente solo ve información anónima.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">El ciclo que probamos en clase</span>
+        <h2>Cinco pasos que ya aplicamos en una materia universitaria y en una escuela de robótica</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h4>Onboarding</h4><p>Detecta el perfil y los intereses del estudiante.</p></div>
+        <div class="step"><h4>Contenido</h4><p>Orientado a su proyecto o emprendimiento.</p></div>
+        <div class="step"><h4>Conversación</h4><p>El estudiante la comparte y llega al docente de forma anónima.</p></div>
+        <div class="step"><h4>Feedback</h4><p>Anónimo, de 1 a 4 estrellas.</p></div>
+        <div class="step"><h4>Clase</h4><p>Dinámicas y herramientas interactivas.</p></div>
+      </div>
+      <div class="note"><b>Aporte innovador:</b> el feedback anónimo guía al docente sobre qué dinámica usar en la clase siguiente.</div>
+      <a class="more" href="#tecnico">Ver cómo funciona por dentro →</a>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap">
+      <span class="eyebrow">Modelo en construcción</span>
+      <p class="slogan">Que enseñar mejor valga más. <span>Y que ir a clase también.</span></p>
+      <p class="lead" style="color:var(--on-dark)">Estamos desarrollando un modelo en el que las instituciones educativas privadas pagan por cada estudiante activo que usa Educai, durante un período acordado. Los docentes participan de lo que Educai cobra por la adopción en sus cátedras, y la intención es que su parte sea mayor que la nuestra.</p>
+      <div class="who-gets">
+        <div class="card"><span class="tag">Estudiantes</span><p>Una experiencia de aprendizaje que realmente nos sirva.</p></div>
+        <div class="card"><span class="tag">Docentes</span><p>Información para mejorar sus clases y participación en el valor económico que se genera.</p></div>
+        <div class="card"><span class="tag">Instituciones</span><p>Mejores herramientas para acompañar la evolución educativa de sus estudiantes.</p></div>
+      </div>
+      <div class="note"><b>Todavía no implementado.</b> El reparto a docentes todavía no está implementado. Estamos definiendo las condiciones de pago, cómo medimos la actividad real y cómo comprobamos que generamos valor educativo.</div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Resultados del test</span>
+        <h2>Dos meses en una materia universitaria y en una escuela de robótica</h2>
+      </div>
+      <div class="grid g3">
+        <div class="card stat"><span class="n">44<small>de 47</small></span><p>aprobaron el 2.º parcial, con Educai disponible. En el 1.er parcial habían aprobado 33 de 47.</p></div>
+        <div class="card stat"><span class="n">25<small>de 29</small></span><p>de los que empezaron el ciclo lo terminaron.</p></div>
+        <div class="card stat"><span class="n">3–4<small>de 4</small></span><p>fue la valoración promedio de la clase al final del período, en una escala de 1 a 4.</p></div>
+      </div>
+      <p class="caveat">Observación sin grupo control. No atribuimos la mejora a Educai.</p>
+      <a class="more" href="#resultados">Ver resultados completos →</a>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap narrow" style="margin:0 auto">
+      <span class="eyebrow">Cohorte 2027</span>
+      <h2>Buscamos docentes e instituciones para el piloto 2027</h2>
+      <p class="lead">Queremos empezar en una cátedra, junto con sus docentes y estudiantes, y aprender de lo que ocurra en el aula. Si das clases en una institución privada y querés incorporar Educai en tu cátedra, completá el formulario y te escribimos.</p>
+      <div class="row"><a class="btn" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener">Sumate al piloto 2027</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTADOS ================= -->
+<section class="view" id="v-resultados" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="stack" style="gap:18px">
+        <span class="eyebrow">Resultados del test</span>
+        <h1 style="max-width:22ch">Qué pasó durante dos meses en una materia universitaria y en una escuela de robótica</h1>
+        <p class="lead">Aplicamos el ciclo completo de Educai durante dos meses y presentamos los resultados en el congreso Innova Educa 21.</p>
+      </div>
+      <div class="grid g3">
+        <div class="stat"><span class="n">2<small>meses</small></span><p class="muted">de ciclo aplicado en clase.</p></div>
+        <div class="stat"><span class="n">47<small>estudiantes</small></span><p class="muted">en una materia universitaria.</p></div>
+        <div class="stat"><span class="n">20<small>estudiantes</small></span><p class="muted">de 12 a 18 años en una escuela de robótica.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="grid g2" style="gap:28px">
+        <div class="card">
+          <span class="tag">Universidad · 47 estudiantes</span>
+          <h3>Aprobados por parcial</h3>
+          <div class="bars">
+            <div class="bar-row">
+              <div class="bar-head"><span>1.er parcial, antes de Educai</span><b>33 de 47 · 70 %</b></div>
+              <div class="track"><div class="fill soft" style="width:70.2%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>2.º parcial, con Educai disponible</span><b>44 de 47 · 94 %</b></div>
+              <div class="track"><div class="fill" style="width:93.6%"></div></div>
+            </div>
+            <div class="axis"><span>0 %</span><span>50 %</span><span>100 %</span></div>
+          </div>
+          <p class="caveat">La aprobación fue mayor y coincide con Educai, sin atribución causal.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Adopción</span>
+          <h3>Quiénes usaron Educai y completaron el ciclo</h3>
+          <div class="legend"><span><i style="background:color-mix(in srgb,var(--accent) 45%,var(--tint))"></i>Lo usaron</span><span><i style="background:var(--accent)"></i>Completaron el ciclo</span></div>
+          <div class="bars">
+            <div class="bar-row">
+              <div class="bar-head"><span>Universidad · lo usaron</span><b>29 de 47 · 62 %</b></div>
+              <div class="track"><div class="fill soft" style="width:61.7%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>Universidad · completaron</span><b>25 de 47 · 53 %</b></div>
+              <div class="track"><div class="fill" style="width:53.2%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>Robótica · lo usaron</span><b>20 de 20 · 100 %</b></div>
+              <div class="track"><div class="fill soft" style="width:100%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>Robótica · completaron</span><b>20 de 20 · 100 %</b></div>
+              <div class="track"><div class="fill" style="width:100%"></div></div>
+            </div>
+            <div class="axis"><span>0 %</span><span>50 %</span><span>100 %</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid g3">
+        <div class="card tint"><p>29 de 47 estudiantes (62 %) usaron Educai con asistencia estable, lo que sugiere uso fuera del aula.</p></div>
+        <div class="card tint"><p><b>25 de 29</b> de los que empezaron el ciclo lo terminaron.</p></div>
+        <div class="card tint"><p><b>De 1–2 a 3–4</b> pasó la valoración promedio de la clase entre el inicio y el final del período, en una escala de 1 a 4.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Observaciones cualitativas</span>
+        <h2>Lo que observamos en clase</h2>
+      </div>
+      <div class="grid g3">
+        <div class="card"><h3>Preguntas más puntuales</h3><p class="muted">Los estudiantes llegaban a clase con más curiosidad y con dudas más concretas.</p></div>
+        <div class="card"><h3>Sentido en el contenido</h3><p class="muted">La competencia en clase ayudó a que los estudiantes le vieran sentido a lo que aprendían.</p></div>
+        <div class="card"><h3>Docente más motivado</h3><p class="muted">Al ver el efecto de sus clases, el docente se sintió más motivado.</p></div>
+      </div>
+      <div class="note">En la escuela de robótica, los 20 estudiantes usaron Educai y los 20 completaron el ciclo, con ejercicios adaptados a la fase de cada proyecto.</div>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="grid g2" style="gap:28px">
+        <div class="card" style="border-color:var(--warn-line)">
+          <span class="eyebrow">Límites del test</span>
+          <h3>Lo que todavía no podemos afirmar</h3>
+          <p>El diseño fue observacional y no tuvo grupo control. El anonimato impide vincular el uso con el desempeño de cada estudiante, no se controló la dificultad de los parciales y no conocemos las razones por las que 18 estudiantes no lo usaron.</p>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Próximos pasos</span>
+          <h3>Qué vamos a medir en 2027</h3>
+          <p>Vamos a sumar un grupo control, a estudiar por qué 18 estudiantes no lo usaron y a medir el impacto en el aprendizaje.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap narrow" style="margin:0 auto">
+      <h2>Sumate a la cohorte 2027 y ayudanos a medir el impacto</h2>
+      <p class="lead">Buscamos docentes e instituciones que quieran probar Educai con un grupo control.</p>
+      <div class="row"><a class="btn" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener">Sumate al piloto 2027</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TÉCNICO ================= -->
+<section class="view" id="v-tecnico" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="stack" style="gap:18px">
+        <span class="eyebrow">Funcionamiento técnico</span>
+        <h1>Cómo funciona Educai por dentro</h1>
+        <p class="lead">Educai ya funciona como un MVP desplegado en producción, con flujo de estudiante, flujo de docente y lógica analítica. Convierte conversaciones individuales en patrones colectivos sin construir perfiles de cada alumno.</p>
+        <div class="chips"><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Render</span></div>
+        <div class="row"><a class="btn" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener">Sumate al piloto 2027</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">El ciclo completo</span>
+        <h2>Del contenido del docente a una nueva decisión docente</h2>
+      </div>
+      <ol class="cycle">
+        <li><b>Contenido docente</b>El docente carga y activa los materiales de su materia.</li>
+        <li><b>Estudio con IA</b>El estudiante conversa con un tutor que usa esos materiales.</li>
+        <li><b>Conversaciones</b>Cada interacción queda como una conversación de varios turnos.</li>
+        <li><b>Análisis</b>La IA detecta conceptos y señales dentro de las conversaciones.</li>
+        <li><b>Patrones de aprendizaje</b>Las señales se agrupan por concepto entre participantes independientes.</li>
+        <li><b>Decisión docente</b>El docente ve insights y recomendaciones, y decide qué hacer.</li>
+        <li><b>Intervención en clase</b>Registra su acción y realiza la sesión de clase.</li>
+        <li><b>Feedback</b>Los estudiantes responden con una valoración y un comentario.</li>
+        <li><b>Nueva evidencia</b>Las conversaciones siguientes permiten comparar señales antes y después.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="grid g2" style="gap:40px;align-items:start">
+        <div class="stack">
+          <span class="eyebrow">Tutor con contenido validado</span>
+          <h2>El docente controla de dónde responde la IA</h2>
+          <p>El docente carga materiales en texto, Markdown o PDF, y cada uno tiene un estado: borrador (<span class="mono">DRAFT</span>), activo (<span class="mono">ACTIVE</span>) o retirado (<span class="mono">RETIRED</span>). Solo los materiales activos se usan para recuperar contexto durante las conversaciones. Educai conserva la trazabilidad de qué fragmentos se usaron en cada respuesta.</p>
+          <p class="muted">Hoy la búsqueda es principalmente léxica, y todavía no usa embeddings ni una base vectorial.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Flujo de recuperación (RAG)</span>
+          <ol class="cycle" style="grid-template-columns:1fr">
+            <li>El docente carga el material.</li>
+            <li>Educai extrae el texto y lo divide en fragmentos.</li>
+            <li>Guarda esos fragmentos.</li>
+            <li>Cuando el estudiante pregunta, busca los fragmentos relacionados.</li>
+            <li>Los envía a la IA junto con la pregunta.</li>
+            <li>Genera una respuesta contextualizada y registra qué fragmentos usó.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Del chat al patrón colectivo</span>
+        <h2>Educai busca señales y agrega evidencia por participante</h2>
+        <p class="lead">Además de guardar la conversación que necesita el estudiante, Educai la analiza y detecta preguntas, confusiones, reformulaciones, conceptos involucrados, tipos de explicación y señales de comprensión. La IA devuelve el análisis bajo un esquema estructurado que se valida antes de guardarlo, y esas señales son observaciones sobre la conversación, sin convertirse en una nota. Para que una conversación intensa de una sola persona no distorsione el resultado, la agregación cuenta participantes independientes y deja de lado la cantidad de mensajes.</p>
+      </div>
+      <div class="states">
+        <div class="state s0"><code>NO_DATA</code><p>No hay señales suficientes para ese concepto.</p></div>
+        <div class="state s1"><code>INSUFFICIENT</code><p>Hay señales, pero en pocas personas. Educai lo reconoce y evita convertirlo en una conclusión grupal.</p></div>
+        <div class="state s2"><code>SUFFICIENT</code><p>El patrón aparece en al menos 3 participantes independientes (umbral configurable) y se muestra al docente como evidencia agregada.</p></div>
+      </div>
+      <div class="card tint">
+        <span class="demo-label">Ejemplo del mensaje que ve el docente</span>
+        <p style="font-family:var(--display);font-size:1.2rem;font-weight:500">«Varios participantes muestran señales relacionadas con dificultades para distinguir correlación y causalidad.»</p>
+        <p class="muted">Educai evita los diagnósticos individuales y habla del grupo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Insights y seguimiento</span>
+        <h2>De la evidencia a la acción en clase</h2>
+      </div>
+      <div class="grid g4">
+        <div class="card"><h4>Insight</h4><p class="muted">Cuando hay evidencia suficiente, incluye el concepto, los participantes afectados sobre el total, la proporción, el estado de evidencia, un resumen y fragmentos anonimizados y sanitizados.</p></div>
+        <div class="card"><h4>Recomendación</h4><p class="muted">Concreta, ligada a la evidencia y ejecutable en una clase. Por ejemplo: usar dos casos comparativos donde exista una correlación sin relación causal.</p></div>
+        <div class="card"><h4>Intervención</h4><p class="muted">El docente registra qué hizo, como explicar de nuevo, usar otro ejemplo, hacer una actividad práctica o abrir una discusión, y queda conectada con el insight.</p></div>
+        <div class="card"><h4>Sesiones y feedback</h4><p class="muted">El docente abre y cierra sesiones de clase, y después los estudiantes dejan una valoración y un comentario que llegan en resultados agregados.</p></div>
+      </div>
+      <p class="caveat">Educai muestra una comparación de señales antes y después de una intervención. Una mejora posterior no demuestra por sí sola que la intervención la haya causado.</p>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Privacidad desde la arquitectura</span>
+        <h2>Identidad, análisis y agregación van por separado</h2>
+        <p class="lead">La conversación pertenece a la experiencia privada del estudiante. Las señales se transforman antes de llegar al docente, que trabaja sobre el insight del grupo y no sobre un expediente individual.</p>
+      </div>
+      <div class="flow" aria-label="Flujo de datos">
+        <span>Alumno identificado</span><em>→</em><span>Conversación</span><em>→</em><span>Análisis</span><em>→</em><span>Pseudonimización</span><em>→</em><span>Agregación</span><em>→</em><span>Insight grupal</span><em>→</em><span class="end">Docente</span>
+      </div>
+      <div class="grid g3">
+        <div class="card tint"><h4>Patrones colectivos</h4><p class="muted">El docente no dispone de perfiles analíticos individuales, rankings, métricas cognitivas por alumno ni diagnósticos automáticos.</p></div>
+        <div class="card tint"><h4>Eliminación real</h4><p class="muted">Cuando el estudiante elimina una conversación, también se eliminan los análisis y señales derivados, y se recalculan los agregados.</p></div>
+        <div class="card tint"><h4>Evidencia anonimizada</h4><p class="muted">Los fragmentos que ve el docente están anonimizados y sanitizados, y solo aparecen cuando hay evidencia grupal suficiente.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Hacia dónde va · especificado, todavía no construido</span>
+        <h2>De la evidencia a la próxima decisión</h2>
+        <p class="lead">Además del MVP, tenemos escritas las especificaciones (versión 1.0) de la capa que sigue. Las incluimos acá porque muestran cómo pensamos el producto, pero no las contamos como funcionalidades existentes.</p>
+      </div>
+      <div class="spec">
+        <div class="card"><h3>Motor de interpretación</h3><p class="muted">Convierte varias señales sobre una capacidad en un estado visible con cuatro etiquetas: «Todavía no sabemos», «En desarrollo», «Evidencia sólida» y «Conviene revisar». Son etiquetas operativas que salen de evidencia observable, y no porcentajes de comprensión. Para llegar a «Evidencia sólida» pide al menos dos oportunidades independientes, una de ellas de calidad alta y con poca ayuda. Una sola respuesta, correcta o incorrecta, no cambia el estado. Los umbrales están pensados como hipótesis a calibrar en un piloto.</p></div>
+        <div class="card"><h3>Motor de recomendación</h3><p class="muted">Toma esa interpretación, el cronograma y las restricciones del aula, y propone una sola acción principal con su motivo. Para el docente trabaja siempre con agregados: la unidad es la capacidad o el patrón del grupo, nunca un alumno señalado. Las reglas de prioridad viven en código versionado y la IA ayuda a redactar y a proponer variantes, pero no decide umbrales ni quién entra en un cálculo.</p></div>
+        <div class="card"><h3>Panel docente por cátedra</h3><p class="muted">Cada cátedra queda aislada de las demás. La pantalla de inicio responde en unos segundos dónde está la cursada, qué necesita el aula y qué conviene hacer en la próxima clase, con un mapa de aprendizaje vinculado al programa y un botón para cerrar la clase. Los porcentajes se calculan solo sobre estudiantes con evidencia suficiente: si 12 de 27 necesitan revisar un tema, se muestra 44 % «basado en 27», y no 12 sobre los 42 inscriptos. Con menos de 5 estudiantes no se muestra el agregado.</p></div>
+        <div class="card"><h3>Diseño de experiencias de clase</h3><p class="muted">La pregunta de partida es qué comportamiento queremos provocar para que el estudiante necesite aprender el contenido. De ahí salen el desafío, la dinámica, el feedback y la evidencia que deja. La creatividad de la dinámica es un medio, y lo que importa es el aprendizaje que se pueda mostrar. Si la tecnología no mejora lo que se logra con papel o pizarra, el sistema recomienda una experiencia presencial.</p></div>
+        <div class="card"><h3>Onboarding de autodescubrimiento</h3><p class="muted">Una conversación estructurada de unos 10 a 12 minutos, en cinco etapas, que arma una primera hipótesis profesional del estudiante y le propone experimentos para ponerla a prueba. El resultado se presenta como hipótesis y no como identidad. Es una propuesta de rediseño y está separada del perfil académico.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Estado actual del MVP</span>
+        <h2>Lo que ya funciona y lo que todavía falta</h2>
+      </div>
+      <div class="status">
+        <div class="card">
+          <h3>Ya funciona</h3>
+          <ul class="check">
+            <li>Autenticación y roles</li><li>Materias y códigos de ingreso</li><li>Carga de PDF, Markdown y texto</li><li>Versionado y estados de materiales</li><li>Actividades</li><li>Tutor multi-turno con RAG</li><li>Trazabilidad de fuentes</li><li>Análisis estructurado con IA</li><li>Pseudonimización y agregación</li><li>Insights y recomendaciones</li><li>Intervenciones y sesiones</li><li>Feedback y comparación antes y después</li><li>Eliminación de conversaciones</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Todavía falta</h3>
+          <ul class="check todo">
+            <li>Recuperación semántica con embeddings</li><li>Análisis asincrónico para escalar</li><li>Almacenamiento de archivos fuera de PostgreSQL</li><li>SSO, SAML y directorios universitarios</li><li>Políticas de retención configurables</li><li>Auditoría completa y exportable</li><li>Más tests de punta a punta</li><li>Motores de interpretación y recomendación v1.0</li><li>Mapa de aprendizaje y cierre de clase</li><li>Onboarding de autodescubrimiento</li>
+          </ul>
+        </div>
+      </div>
+      <p class="caveat">Los insights agregados y el mapa de temas todavía no se evaluaron en el test con estudiantes.</p>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap narrow" style="margin:0 auto">
+      <h2>Probá Educai en tu cátedra</h2>
+      <p class="lead">Buscamos docentes e instituciones para la cohorte 2027.</p>
+      <div class="row"><a class="btn" href="https://forms.gle/H1VRZcY6WzL2wMh96" target="_blank" rel="noopener">Sumate al piloto 2027</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIÉN SOY ================= -->
+<section class="view" id="v-quien-soy" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="hero">
+        <div class="stack" style="gap:20px">
+          <span class="eyebrow">Quién soy</span>
+          <h1>Tomás Fossatti</h1>
+          <p class="lead">Soy hijo y nieto de docentes. Vivo la educación desde adentro y construyo experiencias para que el aula tenga lo que el celular no te da.</p>
+          <div class="chips"><span class="chip">Emprendedor</span><span class="chip">Estudiante</span><span class="chip">TEDx</span><span class="chip">Córdoba, Argentina</span></div>
+        </div>
+        <div class="photo tall">Foto: Tomás durante su charla TEDx</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap">
+      <span class="eyebrow">Perspectiva</span>
+      <h2>Ir a clase tiene que valer la pena. Enseñar también.</h2>
+      <div class="prose" style="color:var(--on-dark)">
+        <p style="font-family:var(--body);font-weight:400;font-size:1.08rem">Mi pregunta guía es esta: «Si puedo aprender en casa, ¿para qué ir a clase?». Hoy creo que una clase tiene que darte algo más difícil de conseguir que una buena explicación: la pregunta que te daba vergüenza hacer, la discusión con alguien que piensa distinto, un desafío que no podés resolver solo.</p>
+        <p style="font-family:var(--body);font-weight:400;font-size:1.08rem">Por eso diseño productos y experiencias para potenciar el aprendizaje dentro y fuera del aula. Si queremos mejores ingenieros, médicos y profesionales, tenemos que cuidar a quienes los forman.</p>
+        <p>Una idea educativa vale lo que aguanta cuando la usa otra persona. Prefiero diseñar pruebas chicas que me obliguen a cambiar de opinión antes que enamorarme de la explicación perfecta.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band white">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Proyectos</span>
+        <h2>Donde pongo a prueba estas ideas</h2>
+        <p class="lead">Uno para estudiantes y otro para docentes. Los dos buscan que el aula tenga lo que el celular no te da.</p>
+      </div>
+      <div class="grid g2">
+        <div class="card">
+          <span class="tag">Comunidad I+D · estudiantes</span>
+          <h3>Espacio IDI</h3>
+          <p class="muted">Una comunidad de estudiantes que pone en práctica lo que aprende resolviendo problemas reales de empresas locales a través de Innovatones, con equipos multidisciplinarios y tiempo limitado.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Startup ed-tech · docentes</span>
+          <h3>Educai</h3>
+          <p class="muted">Los estudiantes estudian con un tutor de IA basado en los materiales de la materia, y el docente ve patrones del grupo sobre qué preguntas se repiten para decidir qué hacer en clase.</p>
+          <a class="more" href="#inicio">Conocer el producto →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Exposiciones</span>
+        <h2>Ideas puestas en conversación</h2>
+      </div>
+      <div class="talk">
+        <div class="card">
+          <span class="tag">Charla TEDx · 6 de noviembre de 2025</span>
+          <h3>AI in the classroom: From fear to replacement</h3>
+          <p class="muted">Una charla en TEDxUniversidad Siglo 21 sobre el futuro del aprendizaje, la transformación del aula y el desafío de crear experiencias educativas que motiven y vayan más allá de transmitir contenidos.</p>
+          <a class="more" href="https://www.youtube.com/watch?v=n1LSi7t5WKs" target="_blank" rel="noopener">Ver la charla en YouTube →</a>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr 1fr">
+          <div class="photo">Foto del escenario TEDx</div>
+          <div class="photo">Foto del escenario TEDx</div>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag">Ferias, congresos y sesiones con mentores</span>
+        <p>Presenté Educai en Feria21 Tech 2025, en la Universidad Siglo 21, en el congreso Innova Educa 21 y en una sesión de Meet the mentors con mentores de Endeavor.</p>
+        <div class="grid g3">
+          <div class="photo">Stand de Educai en Feria21 Tech 2025, Universidad Siglo 21</div>
+          <div class="photo">Conversando con visitantes en Feria21 Tech 2025</div>
+          <div class="photo">Meet the mentors, con mentores de Endeavor</div>
+        </div>
+      </div>
+      <div class="grid g2">
+        <div class="card tint">
+          <span class="tag">Congreso Innova Educa 21</span>
+          <p>Póster con los resultados del test de Educai.</p>
+          <a class="more" href="#resultados">Ver los resultados →</a>
+        </div>
+        <div class="card tint">
+          <span class="tag">Entrevista · 4 de junio de 2025</span>
+          <h4>Cuando una IA deja de hablar como nosotros, ¿cómo sabemos qué está haciendo?</h4>
+          <p class="muted">Una reflexión sobre la comunicación entre agentes de IA, a partir de una entrevista en La Gaceta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap narrow" style="margin:0 auto">
+      <span class="eyebrow">Contacto</span>
+      <h2>¿Estás pensando en problemas parecidos?</h2>
+      <p class="lead">Quiero hablar con más docentes, responsables académicos y founders que construyen experiencias de aprendizaje. Si das clases en una institución privada y querés incorporar Educai en tu cátedra, escribime.</p>
+      <div class="row">
+        <a class="btn" href="mailto:tomas.fossatti01@gmail.com">Hablemos</a>
+      </div>
+      <div class="copy">
+        <code id="mail">tomas.fossatti01@gmail.com</code>
+        <button type="button" id="copy-btn">Copiar correo</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="stack" style="gap:4px">
+      <a class="logo" href="#inicio"><i></i>Educai</a>
+      <span>Fundado por Tomás Fossatti · Córdoba, Argentina</span>
+    </div>
+    <div class="row" style="gap:20px">
+      <a href="https://www.instagram.com/tomasfossatti_/" target="_blank" rel="noopener">Instagram</a>
+      <span>tomas.fossatti01@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var routes=["inicio","resultados","tecnico","quien-soy"];
+  var links=document.getElementById("links"), mb=document.getElementById("menu-btn");
+  function show(){
+    var r=(location.hash||"").slice(1);
+    if(routes.indexOf(r)<0) r="inicio";
+    routes.forEach(function(x){document.getElementById("v-"+x).hidden=(x!==r);});
+    document.querySelectorAll(".links a").forEach(function(a){
+      if(a.dataset.r===r) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    links.classList.remove("open"); mb.setAttribute("aria-expanded","false");
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",show); show();
+  mb.addEventListener("click",function(){
+    var o=links.classList.toggle("open"); mb.setAttribute("aria-expanded",o?"true":"false");
+  });
+  var cb=document.getElementById("copy-btn");
+  cb.addEventListener("click",function(){
+    var t=document.getElementById("mail").textContent;
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("mail"));var s=getSelection();s.removeAllRanges();s.addRange(r);cb.textContent="Seleccionado";}
+    try{navigator.clipboard.writeText(t).then(function(){cb.textContent="Copiado";},sel);}catch(e){sel();}
+  });
+})();
+</script>
+</body>
+</html>
