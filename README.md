@@ -4,14 +4,14 @@
 
 Landing pública de **Educai**, una plataforma con IA que convierte las conversaciones de estudio en información útil para que el docente decida mejor sus clases.
 
-Sitio estático de un solo archivo (`index.html`) con cuatro vistas enlazadas por hash:
+Sitio estático de cuatro páginas, con la base visual de Geist (`vercel-brand.css`) y estilos propios en `assets/site.css`:
 
 | Vista | Ruta |
 |---|---|
-| Inicio | `/#inicio` |
-| Resultados del test | `/#resultados` |
-| Funcionamiento técnico | `/#tecnico` |
-| Quién soy | `/#quien-soy` |
+| Inicio | `/` |
+| Resultados del test | `/resultados` |
+| Funcionamiento técnico | `/tecnico` |
+| Quién soy | `/quien-soy` |
 
 ## Correr localmente
 
@@ -35,13 +35,14 @@ Los textos siguen el documento de contenido v7 (9 de noviembre de 2026). Los res
 |---|---|---|
 | 9 nov 2026 | Canvas de diseño v7, paleta violeta, con fotos originales | `versiones/2026-11-09-canvas-v7/` |
 | 14 nov 2026 | Sitio de cuatro vistas, paleta violeta | `versiones/2026-11-14-violeta/` |
-| 14 nov 2026 | Rediseño monocromo sobre Geist (actual) | `index.html` |
+| 14 nov 2026 | Rediseño monocromo sobre Geist, un solo archivo | `versiones/2026-11-14-monocromo/` |
+| 15 nov 2026 | Cuatro páginas con la guía de Vercel y fotos originales (actual) | raíz del repo |
 
 Cada versión también es un commit propio en el historial.
 
 ## Pendientes
 
-- Fotos reales (TEDx, Feria21, Meet the mentors) y capturas del MVP.
+- Capturas reales del MVP.
 - Fechas de Innova Educa 21 y Meet the mentors.
 - Dominio propio.
 
