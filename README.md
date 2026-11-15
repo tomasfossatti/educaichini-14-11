@@ -1,6 +1,6 @@
 # Educai · Landing
 
-**Sitio publicado:** https://tomasfossattilanding.vercel.app
+**Sitio publicado:** https://educaiapp.vercel.app
 
 Landing pública de **Educai**, una plataforma con IA que convierte las conversaciones de estudio en información útil para que el docente decida mejor sus clases.
 
