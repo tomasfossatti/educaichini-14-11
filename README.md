@@ -1,5 +1,7 @@
 # Educai · Landing
 
+**Sitio publicado:** https://educai-landing-phi.vercel.app
+
 Landing pública de **Educai**, una plataforma con IA que convierte las conversaciones de estudio en información útil para que el docente decida mejor sus clases.
 
 Sitio estático de un solo archivo (`index.html`) con cuatro vistas enlazadas por hash:
